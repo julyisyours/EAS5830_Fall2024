@@ -18,7 +18,7 @@ def connect_with_middleware(contract_json):
         abi = d['abi']
 
     # Connect to Binance Smart Chain (BSC) using the correct provider URL
-    bsc_url = "https://bsc-dataseed.binance.org/"  # Public BSC node provider
+    bsc_url = f"https://bsc-testnet.infura.io/v3/8ef000923e5f43da92da6cfbe71ccd34" # Public BSC node provider
     w3 = Web3(HTTPProvider(bsc_url))
 
     # Inject the Geth PoA middleware to handle Proof of Authority (PoA) consensus
