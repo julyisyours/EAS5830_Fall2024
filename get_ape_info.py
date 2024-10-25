@@ -8,12 +8,12 @@ import json
 bayc_address = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
 
 # Connect to an Ethereum node
-api_url = "https://mainnet.infura.io/v3/8ef000923e5f43da92da6cfbe71ccd34"  # Replace with your Ethereum node URL
+api_url = "https://mainnet.infura.io/v3/8ef000923e5f43da92da6cfbe71ccd34"  # Replace with your Infura Ethereum node URL
 provider = HTTPProvider(api_url)
 web3 = Web3(provider)
 
 # Convert the Bored Ape contract address to checksum format
-contract_address = web3.toChecksumAddress(bayc_address)
+contract_address = Web3.to_checksum_address(bayc_address)
 
 # Load the ABI from the file 'abi.json'
 with open('/home/codio/workspace/abi.json', 'r') as f:
@@ -64,3 +64,4 @@ if __name__ == "__main__":
     ape_id = 1  # Replace with the desired Ape ID
     ape_info = get_ape_info(ape_id)
     print(ape_info)
+
