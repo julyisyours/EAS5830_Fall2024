@@ -14,9 +14,9 @@ w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 with open("NFT.abi", "r") as abi_file:
     abi = json.load(abi_file)
     
-# Contract address and ABI (assume ABI is available)
-print("Contract address:", contract_address)
+# Contract address
 contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
+print("Contract address:", contract_address)
 contract = w3.eth.contract(address=contract_address, abi=abi)
 
 # Verify the presence of the claim function
