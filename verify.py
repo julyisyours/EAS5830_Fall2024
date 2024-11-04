@@ -20,7 +20,7 @@ my_address = "0xAe693a9b03B2Ef5F642f82d910e19D7b47Bb87B7"
 my_private_key = "0xfb91cee50e8cbcbb250f17a85ca66b0f8b915cf27764aeccce611915ae022caf"
 
 # Generate a unique nonce for the claim function
-nonce = w3.eth.get_transaction_count(0xAe693a9b03B2Ef5F642f82d910e19D7b47Bb87B7)
+nonce = w3.eth.get_transaction_count(my_address)
 
 # Claim the NFT
 transaction = contract.functions.claim(nonce).buildTransaction({
@@ -31,7 +31,7 @@ transaction = contract.functions.claim(nonce).buildTransaction({
 })
 
 # Sign and send the transaction
-signed_txn = w3.eth.account.sign_transaction(transaction, private_key=my_private_key)
+signed_txn = w3.eth.account.sign_transaction(transaction, private_key = my_private_key)
 txn_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
 
 # Wait for transaction confirmation
