@@ -1,27 +1,32 @@
 import eth_account
-from web3 import Web3
 from eth_account.messages import encode_defunct
 
-
 def sign(m):
-    w3 = Web3()
-    
     # Step 1: Create a new Ethereum account
     account = eth_account.Account.create()
     eth_address = account.address
-    private_key = account.key  # private_key can be used to sign the message
-
+    private_key = account.key
+    
+    print("Generated address:", eth_address)
+    print("Private key:", private_key.hex())
+    
     # Step 2: Prepare the message
-    message = encode_defunct(text=m)  # Encoding the message
+    try:
+        message = encode_defunct(text=m)
+    except Exception as e:
+        print("Error encoding message:", e)
+        return None, None
 
-    # Step 3: Sign the message with the private key
-    signed_message = account.sign_message(message)
+    # Step 3: Sign the message
+    try:
+        signed_message = account.sign_message(message)
+    except Exception as e:
+        print("Error signing message:", e)
+        return None, None
 
-    # generate signature
-    # your code here
-
-    signed_message = None
-
+    # Ensure signed_message is a SignedMessage instance
     assert isinstance(signed_message, eth_account.datastructures.SignedMessage)
-
+    
+    print("Signed message:", signed_message)
+    
     return eth_address, signed_message
