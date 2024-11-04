@@ -2,7 +2,6 @@ from web3 import Web3
 from eth_account.messages import encode_defunct
 from web3.middleware import geth_poa_middleware
 import json
-import os
 import secrets
 import random
 
@@ -16,15 +15,15 @@ with open("NFT.abi", "r") as abi_file:
     
 # Contract address
 contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
-print("Contract address:", contract_address)
+# print("Contract address:", contract_address)
 contract = w3.eth.contract(address=contract_address, abi=abi)
 
 # Verify the presence of the claim function
-for function_abi in abi:
-    if function_abi.get("name") == "claim":
-        print("ABI for claim function:", function_abi)
+# for function_abi in abi:
+#     if function_abi.get("name") == "claim":
+#         print("ABI for claim function:", function_abi)
 
-print("All contract functions:", contract.all_functions())
+# print("All contract functions:", contract.all_functions())
 
 my_address = "0xAe693a9b03B2Ef5F642f82d910e19D7b47Bb87B7"
 my_private_key = "0xfb91cee50e8cbcbb250f17a85ca66b0f8b915cf27764aeccce611915ae022caf"
@@ -35,18 +34,12 @@ print("Nonce (bytes32):", nonce)
 
 # Attempt to build and sign the transaction
 try:
-    # Build the transaction
-    transaction = contract.functions.claim(my_address, nonce).buildTransaction({
+    # Directly call the claim function with transact
+    txn_hash = contract.functions.claim(my_address, nonce).transact({
         'from': my_address,
         'gas': 200000,  # Increased gas limit
-        'gasPrice': w3.toWei('30', 'gwei'),
-        'nonce': w3.eth.get_transaction_count(my_address),
+        'gasPrice': w3.toWei('30', 'gwei')
     })
-    print("Transaction built successfully:", transaction)
-    
-    # Sign and send the transaction
-    signed_txn = w3.eth.account.sign_transaction(transaction, private_key=my_private_key)
-    txn_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
     
     # Wait for transaction confirmation
     receipt = w3.eth.wait_for_transaction_receipt(txn_hash)
