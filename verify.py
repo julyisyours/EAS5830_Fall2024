@@ -1,33 +1,37 @@
 from web3 import Web3
 from eth_account.messages import encode_defunct
-import random
 from web3.middleware import geth_poa_middleware
 import json
+import os
+import secrets
+import random
 
 # Set up web3 connection
 w3 = Web3(Web3.HTTPProvider("https://api.avax-test.network/ext/bc/C/rpc"))
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-# Contract address and ABI (assume ABI is available)
-contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
 # Load the ABI from the NFT.abi file
 with open("NFT.abi", "r") as abi_file:
     abi = json.load(abi_file)
+    
+# Contract address and ABI (assume ABI is available)
+contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
 
 # Set up the contract
 contract = w3.eth.contract(address=contract_address, abi=abi)
+
 my_address = "0xAe693a9b03B2Ef5F642f82d910e19D7b47Bb87B7"
 my_private_key = "0xfb91cee50e8cbcbb250f17a85ca66b0f8b915cf27764aeccce611915ae022caf"
 
-# Generate a unique nonce for the claim function
-nonce = w3.eth.get_transaction_count(my_address)
+# Generate a random 32-byte nonce
+nonce = secrets.token_bytes(32)
 
-# Claim the NFT
-transaction = contract.functions.claim(nonce).buildTransaction({
+# Build the transaction to call the claim function
+transaction = contract.functions.claim(my_address, nonce).buildTransaction({
     'from': my_address,
     'gas': 2000,
     'gasPrice': w3.toWei('30', 'gwei'),
-    'nonce': nonce,
+    'nonce': w3.eth.get_transaction_count(my_address),
 })
 
 # Sign and send the transaction
