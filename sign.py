@@ -7,8 +7,8 @@ def sign(m):
     eth_address = account.address
     private_key = account.key
     
-    print("Generated address:", eth_address)
-    print("Private key:", private_key.hex())
+    # print("Generated address:", eth_address)
+    # print("Private key:", private_key.hex())
     
     # Step 2: Prepare the message
     try:
@@ -27,6 +27,6 @@ def sign(m):
     # Ensure signed_message is a SignedMessage instance
     assert isinstance(signed_message, eth_account.datastructures.SignedMessage)
     
-    print("Signed message:", signed_message)
+    # print("Signed message:", signed_message)
     
     return eth_address, signed_message
