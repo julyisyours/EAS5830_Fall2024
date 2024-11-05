@@ -716,7 +716,7 @@ def signChallenge( challenge ):
     w3 = Web3()
 
     #This is the only line you need to modify
-    sk = my_private_key 
+    sk = private_key
 
     acct = w3.eth.account.from_key(sk)
 
