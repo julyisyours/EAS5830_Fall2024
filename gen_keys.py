@@ -41,7 +41,7 @@ def get_keys(challenge, keyId=0, filename="eth_mnemonic.txt"):
     # Sign the message with the generated account
     signature = acct.sign_message(msg).signature
 
-    # Return the signature and Ethereum address of the account
+    # Return the signature (as HexBytes) and Ethereum address of the account
     return signature, acct.address
 
 if __name__ == "__main__":
@@ -50,3 +50,4 @@ if __name__ == "__main__":
         sig, addr = get_keys(challenge=challenge, keyId=i)
         print(f"Address: {addr}")
         print(f"Signature: {sig.hex()}")
+
