@@ -41,22 +41,22 @@ contract_abi = [
     "type": "constructor"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "owner",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "approved",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
@@ -66,22 +66,22 @@ contract_abi = [
     "type": "event"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "owner",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "operator",
         "type": "address"
       },
       {
-        "indexed": false,
+        "indexed": False,
         "internalType": "bool",
         "name": "approved",
         "type": "bool"
@@ -91,22 +91,22 @@ contract_abi = [
     "type": "event"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "recipient",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
       },
       {
-        "indexed": false,
+        "indexed": False,
         "internalType": "bytes32",
         "name": "nonce",
         "type": "bytes32"
@@ -116,28 +116,28 @@ contract_abi = [
     "type": "event"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "recipient",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "uint256",
         "name": "tokenIdA",
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "uint256",
         "name": "tokenIdB",
         "type": "uint256"
       },
       {
-        "indexed": false,
+        "indexed": False,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
@@ -147,16 +147,16 @@ contract_abi = [
     "type": "event"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "previousOwner",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
@@ -166,22 +166,22 @@ contract_abi = [
     "type": "event"
   },
   {
-    "anonymous": false,
+    "anonymous": False,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "from",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "address",
         "name": "to",
         "type": "address"
       },
       {
-        "indexed": true,
+        "indexed": True,
         "internalType": "uint256",
         "name": "tokenId",
         "type": "uint256"
