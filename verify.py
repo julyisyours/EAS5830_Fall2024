@@ -689,11 +689,11 @@ contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
 # Load the contract
 nft_contract = web3.eth.contract(address=contract_address, abi=contract_abi)
 
-# Generate a random nonce
-nonce = random.randint(1, 1000000)  # You can experiment with different values for the smallest token ID
+# Convert the integer nonce to bytes32 format
+nonce_bytes32 = Web3.to_bytes(nonce).rjust(32, b'\x00')  # Pads to 32 bytes
 
-# Build the transaction
-claim_txn = nft_contract.functions.claim(nonce).build_transaction({
+# Corrected claim function call with both required arguments
+claim_txn = nft_contract.functions.claim(wallet_address, nonce_bytes32).build_transaction({
     'from': wallet_address,
     'nonce': web3.eth.get_transaction_count(wallet_address),
     'gas': 200000,
