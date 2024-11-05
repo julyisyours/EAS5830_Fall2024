@@ -1,5 +1,7 @@
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
+from eth_account.messages import encode_defunct
+import random
 
 # Connect to the Avalanche Fuji Testnet node
 fuji_rpc_url = "https://api.avax-test.network/ext/bc/C/rpc"
@@ -687,9 +689,6 @@ contract_address = "0x85ac2e065d4526FBeE6a2253389669a12318A412"
 # Load the contract
 nft_contract = web3.eth.contract(address=contract_address, abi=contract_abi)
 
-from eth_account.messages import encode_defunct
-import random
-
 # Generate a random nonce
 nonce = random.randint(1, 1000000)  # You can experiment with different values for the smallest token ID
 
@@ -710,6 +709,7 @@ txn_hash = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 # Wait for the transaction receipt
 txn_receipt = web3.eth.wait_for_transaction_receipt(txn_hash)
 print(f"Transaction successful with hash: {txn_hash.hex()}")
+
 
 def signChallenge( challenge ):
 
