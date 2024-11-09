@@ -1,0 +1,474 @@
+{"bsc": { "address": "0xaA7CAaDA823300D18D3c43f65569a47e78220073",
+ "abi": [
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "admin",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_ADMIN_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "STATE_SETTER",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getCountByOwner",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getOwnerByPrime",
+    "inputs": [
+      {
+        "name": "leaf",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getPrimeByOwner",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRoleAdmin",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "grantRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "leafCount",
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "merkleRoot",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setRoot",
+    "inputs": [
+      {
+        "name": "newRoot",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "submit",
+    "inputs": [
+      {
+        "name": "proof",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      },
+      {
+        "name": "leaf",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "submitted",
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "submitters",
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "supportsInterface",
+    "inputs": [
+      {
+        "name": "interfaceId",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "upgrade",
+    "inputs": [
+      {
+        "name": "newVersion",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "version",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "RoleAdminChanged",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "previousAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleGranted",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleRevoked",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Submission",
+    "inputs": [
+      {
+        "name": "_from",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "prime",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "version",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Upgrade",
+    "inputs": [
+      {
+        "name": "oldVersion",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newVersion",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  }
+] } }
