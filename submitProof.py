@@ -152,10 +152,10 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
 
-    # Print available functions to debug
+    # Print available functions to confirm `submit` is accessible
     print("Available functions:", dir(contract.functions))
 
-    # Use `transact` if `buildTransaction` does not work
+    # Use `transact` directly for nonpayable functions without return values
     tx_hash = contract.functions.submit(proof, random_leaf).transact({
         'from': acct.address,
         'gas': 2000000,
