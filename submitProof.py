@@ -3,9 +3,8 @@ import random
 import string
 import json
 from pathlib import Path
-from web3 import Web3
+from web3 import Web3, toWei
 from web3.middleware import geth_poa_middleware  # Necessary for POA chains
-
 
 def merkle_assignment():
     """
@@ -25,7 +24,7 @@ def merkle_assignment():
     tree = build_merkle(leaves)
 
     # Select a random leaf and create a proof for that leaf
-    random_leaf_index = 0 #TODO generate a random index from primes to claim (0 is already claimed)
+    random_leaf_index = 17 #TODO generate a random index from primes to claim (0 is already claimed)
     proof = prove_merkle(tree, random_leaf_index)
 
     # This is the same way the grader generates a challenge for sign_challenge()
@@ -153,16 +152,18 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
     
-    # Attempt using `transact` instead of `buildTransaction`
-    tx = contract.functions.submit(proof, random_leaf).transact({
+    # Prepare the transaction with the updated toWei usage
+    tx = contract.functions.submit(proof, random_leaf).buildTransaction({
         'from': acct.address,
+        'nonce': w3.eth.getTransactionCount(acct.address),
         'gas': 2000000,
-        'gasPrice': w3.toWei('10', 'gwei')
+        'gasPrice': toWei('10', 'gwei')  # Use toWei directly
     })
 
-    # Return the transaction hash
-    return tx.hex()
-
+    # Sign and send the transaction
+    signed_tx = acct.sign_transaction(tx)
+    tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+    return tx_hash.hex()
 
 
 # Helper functions that do not need to be modified
