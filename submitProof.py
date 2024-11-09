@@ -151,23 +151,20 @@ def send_signed_msg(proof, random_leaf):
     address, abi = get_contract_info(chain)
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
-    
-    # Manually set gas price in wei (10 Gwei = 10 * 10^9 wei)
-    gas_price_in_wei = 10 * (10 ** 9)
 
-    # Prepare the transaction with manual gas price calculation
-    tx = contract.functions.submit(proof, random_leaf).buildTransaction({
+    # Print available functions to debug
+    print("Available functions:", dir(contract.functions))
+
+    # Use `transact` if `buildTransaction` does not work
+    tx_hash = contract.functions.submit(proof, random_leaf).transact({
         'from': acct.address,
-        'nonce': w3.eth.getTransactionCount(acct.address),
         'gas': 2000000,
-        'gasPrice': gas_price_in_wei
+        'gasPrice': Web3.toWei('10', 'gwei')
     })
 
-    # Sign and send the transaction
-    signed_tx = acct.sign_transaction(tx)
-    tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-    print("Available functions:", dir(contract.functions))
+    # Return the transaction hash
     return tx_hash.hex()
+
 
 
 
