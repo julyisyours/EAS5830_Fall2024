@@ -152,30 +152,25 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
 
-    # Set gas price manually
-    gas_price_in_wei = 10 * (10 ** 9)  # 10 gwei
+    # Use the new snake_case format for gas price conversion
+    gas_price_in_wei = w3.to_wei('10', 'gwei')  # 10 gwei
 
-    try:
-        # First attempt to use transact directly
-        tx_hash = contract.functions.submit(proof, random_leaf).transact({
-            'from': acct.address,
-            'gas': 2000000,
-            'gasPrice': gas_price_in_wei
-        })
-        return tx_hash.hex()
+    # Build the transaction for local signing
+    transaction = contract.functions.submit(proof, random_leaf).build_transaction({
+        'from': acct.address,
+        'nonce': w3.eth.get_transaction_count(acct.address),
+        'gas': 2000000,
+        'gasPrice': gas_price_in_wei
+    })
+
+    # Sign the transaction locally
+    signed_txn = acct.sign_transaction(transaction)
+
+    # Send the signed transaction using send_raw_transaction
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
     
-    except AttributeError:
-        # If transact fails, fallback to manual transaction building, signing, and sending
-        transaction = contract.functions.submit(proof, random_leaf).buildTransaction({
-            'from': acct.address,
-            'nonce': w3.eth.getTransactionCount(acct.address),
-            'gas': 2000000,
-            'gasPrice': gas_price_in_wei
-        })
-        signed_txn = acct.sign_transaction(transaction)
-        tx_hash = w3.eth.sendRawTransaction(signed_txn.rawTransaction)
-        return tx_hash.hex()
-
+    # Return the transaction hash
+    return tx_hash.hex()
 
 # Helper functions that do not need to be modified
 def connect_to(chain):
