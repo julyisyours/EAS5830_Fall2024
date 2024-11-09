@@ -4,6 +4,7 @@ import string
 import json
 from pathlib import Path
 from web3 import Web3
+from web3.utils import toWei 
 from web3.middleware import geth_poa_middleware  # Necessary for POA chains
 
 def merkle_assignment():
@@ -152,20 +153,15 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
 
-    # Print available functions to confirm `submit` is accessible
-    print("Available functions:", dir(contract.functions))
-
-    # Use `transact` directly for nonpayable functions without return values
+    # Use toWei directly as a function
     tx_hash = contract.functions.submit(proof, random_leaf).transact({
         'from': acct.address,
         'gas': 2000000,
-        'gasPrice': Web3.toWei('10', 'gwei')
+        'gasPrice': toWei('10', 'gwei')  # Updated to use toWei directly
     })
 
     # Return the transaction hash
     return tx_hash.hex()
-
-
 
 
 # Helper functions that do not need to be modified
