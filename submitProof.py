@@ -24,7 +24,14 @@ def merkle_assignment():
     tree = build_merkle(leaves)
 
     # Select a random leaf and create a proof for that leaf
-    random_leaf_index = 17 #TODO generate a random index from primes to claim (0 is already claimed)
+     # Find an unclaimed leaf index by querying the contract
+    random_leaf_index = find_unclaimed_leaf(primes)
+
+    if random_leaf_index is None:
+        print("No unclaimed leaves found.")
+        return
+
+    #TODO generate a random index from primes to claim (0 is already claimed)
     proof = prove_merkle(tree, random_leaf_index)
 
     # This is the same way the grader generates a challenge for sign_challenge()
@@ -38,6 +45,25 @@ def merkle_assignment():
         #  complete this method and run your code with the following line un-commented
         tx_hash = send_signed_msg(proof, leaves[random_leaf_index])
 
+def find_unclaimed_leaf(primes):
+    """
+    Checks the contract for each prime to see if it has been claimed.
+    Returns the index of the first unclaimed prime.
+    """
+    chain = 'bsc'
+    w3 = connect_to(chain)
+    address, abi = get_contract_info(chain)
+    contract = w3.eth.contract(address=address, abi=abi)
+
+    for index, prime in enumerate(primes):
+        leaf = prime.to_bytes(32, 'big')
+        owner = contract.functions.getOwnerByPrime(leaf).call()
+
+        # Check if the prime is unclaimed (assuming unclaimed returns address(0))
+        if owner == '0x0000000000000000000000000000000000000000':
+            return index
+
+    return None
 
 def generate_primes(num_primes):
     """
@@ -171,6 +197,7 @@ def send_signed_msg(proof, random_leaf):
     
     # Return the transaction hash
     return tx_hash.hex()
+
 
 # Helper functions that do not need to be modified
 def connect_to(chain):
