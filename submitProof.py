@@ -166,6 +166,7 @@ def send_signed_msg(proof, random_leaf):
     # Sign and send the transaction
     signed_tx = acct.sign_transaction(tx)
     tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+    print("Available functions:", dir(contract.functions))
     return tx_hash.hex()
 
 
