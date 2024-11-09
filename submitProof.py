@@ -3,7 +3,7 @@ import random
 import string
 import json
 from pathlib import Path
-from web3 import Web3, toWei
+from web3 import Web3
 from web3.middleware import geth_poa_middleware  # Necessary for POA chains
 
 def merkle_assignment():
@@ -152,12 +152,12 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
     contract = w3.eth.contract(address=address, abi=abi)
     
-    # Prepare the transaction with the updated toWei usage
+    # Prepare the transaction using Web3.toWei as a class method
     tx = contract.functions.submit(proof, random_leaf).buildTransaction({
         'from': acct.address,
         'nonce': w3.eth.getTransactionCount(acct.address),
         'gas': 2000000,
-        'gasPrice': toWei('10', 'gwei')  # Use toWei directly
+        'gasPrice': Web3.toWei('10', 'gwei')  # Use Web3.toWei as a static method
     })
 
     # Sign and send the transaction
