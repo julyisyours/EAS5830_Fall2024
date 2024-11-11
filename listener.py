@@ -4,7 +4,7 @@ import json
 import pandas as pd
 from datetime import datetime
 
-eventfile = 'deposit_logs.csv'
+eventfile = '/home/codio/workspace/deposit_logs.csv'
 
 def scanBlocks(chain, start_block, end_block, contract_address):
     """
